@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="shattle_log-removebg-preview.png">
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body class="bg-light">
@@ -16,7 +18,7 @@
           <a class="navbar-brand" href="#"><h2 class="mx-5">Shuttle</h2></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-5">
               <li class="nav-item mx-2">
@@ -48,56 +50,47 @@
         <div class="row justify-content-center text-center g-0">
             <div class="col-lg-2 col-md-6">
                 <div class="destination">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="first">
-                          From
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><button class="dropdown-item" type="button">Astana</button></li>
-                          <li><button class="dropdown-item" type="button">Almaty</button></li>
-                          <li><button class="dropdown-item" type="button">Shymkent</button></li>
-                        </ul>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">From</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"  
+                        placeholder="type here" id="from-dest">
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-2 col-md-6">
                 <div class="destination" >
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="to">
-                          To
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><button class="dropdown-item" type="button">Astana</button></li>
-                          <li><button class="dropdown-item" type="button">Almaty</button></li>
-                          <li><button class="dropdown-item" type="button">Shymkent</button></li>
-                        </ul>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">To</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                        placeholder="type here" id="to-dest">
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6">
-    
+
+            <div class="col-lg-2 col-md-6">    
                 <div class="destination">
-                    <input type="date" placeholder="Date">
+                    <input type="date" id="date-departure">
                 </div>
                 <h5 style="font-size: small;">DEPARTURE</h5>
             </div>
 
             <div class="col-lg-2 col-md-6">
                 <div class="destination">
-                    <input type="date" placeholder="Date">
+                    <input type="date" id="date-return">
                 </div>
                 <h5 style="font-size: small;">RETURN</h5>
             </div>
 
             <div class="col-lg-2 col-md-6">
                 <div class="destination">
-                    <input type="number" placeholder="Passenger number" id ="third">
+                    <input type="number" placeholder="Passenger number" id ="numberOfPassengers" style="border-radius: 0 15px 15px 0;">
                 </div>
             </div>
 
             <div class="col-lg-2 col-md-6">
                 <div class="destination">
-                    <button type="button" class="btn btn-primary" style="height: 50px;">Search Flights</button>
+                    <button type="button" class="btn btn-primary" style="height: 50px;" id="search">Search Flights</button>
                 </div>
             </div>
 
@@ -105,6 +98,14 @@
     </div>
 
     <div class="container my-5">
+        <div class="row justify-content-center text-center my-5">
+            <div class="col">
+                <h1>History of your search</h1>
+                <div id="flight-destinations">
+                    <!-- Flight destinations will be displayed here -->
+                </div>
+            </div>
+        </div>
         <div class="row justify-content-center text-center">
             <h1>Popular Destinations</h1>
             <h3 class="mb-5">from Astana</h3>
@@ -122,9 +123,50 @@
                 <img src="img/UAE.jpg" max-width="100%" height="200px" style="border-radius: 20px;"> <h4>UAE</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'  ></i> from 317<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
             </div>
         </div>
+
         <div class="row text-center">
             <div class="col">
-                <button type="button" class="btn btn-primary btn-lg mt-3">Show more Countries</button>
+                <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalBtn">Show more Countries</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">More Countries</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="img/kaz.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>Kazakhstan</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 72<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="img/turkey.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>Turkey</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 143<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="img/UAE.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>UAE</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'  ></i> from 317<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="img/kaz.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>Kazakhstan</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 72<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="img/turkey.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>Turkey</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 143<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="img/UAE.jpg" max-width="100%" height="150px" style="border-radius: 20px;"> <h4>UAE</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'  ></i> from 317<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -207,6 +249,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <footer>
         <p class="h6">
