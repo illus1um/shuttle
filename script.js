@@ -1,4 +1,4 @@
-'use-strict';
+'use strict';
 
 // register form validation
 function validateForm() {
@@ -21,8 +21,7 @@ function validateForm() {
         return false;
     }
     
-    window.location.href = "login.html";
-    return false;
+    return true;
 }
 
 // Slider
@@ -51,6 +50,7 @@ function setImg() {
     return sliderImg.setAttribute('src', 'img/' + images[i]);
 }
 
+
 // Capture and handle user events 
 const fromDest = document.getElementById('from-dest');
 const toDest = document.getElementById('to-dest');
@@ -59,6 +59,7 @@ const dateReturn = document.getElementById('date-return');
 const numberOfPassengers = document.getElementById('numberOfPassengers');
 const searchBtn = document.getElementById('search')
 
+const destinations = [];
 
 searchBtn.onclick = function searchFlights() {
     if (fromDest.value === '' || toDest.value === '' || dateDeparture.value === '' || numberOfPassengers.value < 1) {
@@ -66,13 +67,9 @@ searchBtn.onclick = function searchFlights() {
     } else {
         alert(`We are searching tickets for ${numberOfPassengers.value} people from ${fromDest.value} to ${toDest.value}. Date of your departure: ${dateDeparture.value} and your return: ${dateReturn.value};`)
     }
-}
 
-// loop using for
-const destinations = ["New York", "Los Angeles", "London", "Paris", "Tokyo"];
-
-searchBtn.onclick = function() {
-    var destination = toDest.value;
+    const destination = fromDest.value + ' - ' + toDest.value + 
+    '. Date: ' + dateDeparture.value + ' - ' + dateReturn.value;
 
     if (destination.trim() !== "") {
         destinations.push(destination);
@@ -83,13 +80,13 @@ searchBtn.onclick = function() {
 }
 
 function displayDestinations() {
-    var destinationsContainer = document.getElementById("flight-destinations");
+    let destinationsContainer = document.getElementById("flight-destinations");
 
-    destinationsContainer.innerHTML = "";
+    destinationsContainer.innerHTML = "";   
 
     destinations.forEach(function (destination) {
-        var destinationElement = document.createElement("h3");
-        destinationElement.textContent =  destination;
+        const destinationElement = document.createElement("h3");
+        destinationElement.textContent = destination;
         destinationsContainer.appendChild(destinationElement);
     });
 }
