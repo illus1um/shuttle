@@ -34,28 +34,6 @@ footer {
     color: #fff;
 }
 
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14.5px;
-    
-}
-
-.remember-forgot label input {
-    accent-color: #e6772e;
-    margin-right: 3px;
-}
-
-.remember-forgot a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.remember-forgot a:hover {
-    text-decoration: underline;
-}
-
-
 .navbar-brand h2{
     color: #e6772e !important;
 }

@@ -7,9 +7,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="shattle_log-removebg-preview.png">
-    <script src="script.js" defer></script>
-    <script src="main.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="img/shattle_log-removebg-preview.png">    
+    <script src="js/script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -23,7 +22,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-5">
               <li class="nav-item mx-2">
-                <a class="nav-link active"  href="#">Home</a>
+                <a class="nav-link active" href="#">Home</a>
               </li>
               <li class="nav-item mx-2">
                 <a class="nav-link active" aria-current="page" href="about.html">About us</a>
@@ -37,12 +36,24 @@
               
             </ul>
           </div>
+
+          <div class="dropdown mx-5" style="margin-right: 400px !important;">
+            <button class="btn btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style='color:#297fb7'>
+                <i class='bx bxs-user' style='color:#297fb7'></i>Profile
+            </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="profile.html" style='color:#297fb7'> <i class='bx bxs-cog' style='color:#297fb7; margin-right: 5px;'></i> Settings</a></li>
+                <li><a class="dropdown-item" href="#" style='color:#297fb7'> <i class='bx bxs-bell' style='color:#297fb7; margin-right: 5px;'></i> Notifications</a></li>
+                <li><a class="dropdown-item" href="#" style='color:#297fb7' id="exit"> <i class='bx bx-exit' style='color:#297fb7; margin-right: 5px;'></i> Exit</a></li>
+              </ul>
+          </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container my-5">
         <div class="row">
             <div class="col">
+                <h1 class="text-center" id="welcomeMessage"></h1>
                 <h1 class="text-center">Buy Flight Tickets</h1><br>
                 <h3 class="text-center mb-5">Helping you to fly anywhere around the World!</h3>
             </div>
@@ -80,7 +91,7 @@
                 <div class="destination">
                     <input type="date" id="date-return">
                 </div>
-                <h5 style="font-size: small;">RETURN</h5>
+                <h5 style="font-size: small;" id="jks ">RETURN</h5>
             </div>
 
             <div class="col-lg-2 col-md-6">
@@ -99,29 +110,21 @@
     </div>
 
     <div class="container my-5">
-        <div class="row justify-content-center text-center my-5">
-            <div class="col">
-                <h1>History of your search</h1>
-                <div id="flight-destinations">
-                    <!-- Flight destinations will be displayed here -->
-                </div>
-            </div>
-        </div>
         <div class="row justify-content-center text-center">
-            <h1>Popular Destinations</h1>
+            <h1  id="pop-dest">Popular Destinations</h1>
             <h3 class="mb-5">from Astana</h3>
 
             <div class="col-lg-3 col-md-6">
-                <img src="img/italy.jpg" max-width="100%" height="200px" style="border-radius: 20px;"> <h4>Italy</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 484<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                <img src="img/italy.jpg" max-width="100%" height="180px" style="border-radius: 20px;"> <h4>Italy</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 484<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
             </div>
             <div class="col-lg-3 col-md-6">
-                <img src="img/kaz.jpg" max-width="100%" height="200px" style="border-radius: 20px;"> <h4>Kazakhstan</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 72<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                <img src="img/kaz.jpg" max-width="100%" height="180px" style="border-radius: 20px;"> <h4>Kazakhstan</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 72<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
             </div>
             <div class="col-lg-3 col-md-6">
-                <img src="img/turkey.jpg" max-width="100%" height="200px" style="border-radius: 20px;"> <h4>Turkey</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 143<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                <img src="img/turkey.jpg" max-width="100%" height="180px" style="border-radius: 20px;"> <h4>Turkey</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'></i> from 143<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
             </div>
             <div class="col-lg-3 col-md-6">
-                <img src="img/UAE.jpg" max-width="100%" height="200px" style="border-radius: 20px;"> <h4>UAE</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'  ></i> from 317<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
+                <img src="img/UAE.jpg" max-width="100%" height="180px" style="border-radius: 20px;"> <h4>UAE</h4><h5><i class='bx bxs-plane-alt' style='color:#da702a'  ></i> from 317<i class='bx bx-dollar' style='color:#2ec669' ></i> </h5>
             </div>
         </div>
 

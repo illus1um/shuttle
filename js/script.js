@@ -1,57 +1,17 @@
 'use strict';
 
-// register form validation
-function validateForm() {
-    const password = document.getElementById('password').value;
-    const username = document.getElementById('username').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+document.addEventListener("DOMContentLoaded", function() {
+    const firstKey = localStorage.key(0);
+    const userDataJSON = localStorage.getItem(firstKey);
+    const userData = JSON.parse(userDataJSON);
+    const usernameValue = userData.username; 
 
-    if (username.length < 5) {
-        alert('Username must be at least 5 characters');
-        return false;
+    if (userData) {
+        const welcomeMessage = document.getElementById("welcomeMessage");
+        welcomeMessage.textContent = "Hello " + usernameValue + "!";
     }
-    
-    if (password.length < 8) {
-        alert('Password must be at least 8 characters');
-        return false;
-    }
-    
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return false;
-    }
-    
-    return true;
-}
+});
 
-// Slider
-const sliderImg = document.querySelector('.slider-img');
-const images = ['carousel-1.jpg', 'carousel-2.jpg', 'carousel-3.jpg'];
-
-let i = 0;
-
-function prev() {
-    if (i <= 0) {
-        i = images.length;
-    }
-    i--;
-    return setImg();
-}
-
-function next() {
-    if (i >= images.length - 1) {
-        i = -1;
-    }
-    i++;
-    return setImg();
-}
-
-function setImg() {
-    return sliderImg.setAttribute('src', 'img/' + images[i]);
-}
-
-
-// Capture and handle user events 
 const fromDest = document.getElementById('from-dest');
 const toDest = document.getElementById('to-dest');
 const dateDeparture = document.getElementById('date-departure');
@@ -91,15 +51,13 @@ function displayDestinations() {
     });
 }
 
-// Timer or countdown
-const modalBtn = document.getElementById('modalBtn');
+const exit = document.getElementById('exit');
+exit.addEventListener('click', e => {
+    e.preventDefault();
+    localStorage.removeItem(localStorage.key(0));
+    window.location.href = 'login.html';
+});
 
-modalBtn.onclick = function() {
-    const delay = 2000;
+console.log(localStorage);
 
-    function closeBootstrapModal() {
-      $('#exampleModal').modal('hide');
-    }
-    
-    setTimeout(closeBootstrapModal, delay);
-}
+console.log(localStorage);

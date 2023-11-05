@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="img/shattle_log-removebg-preview.png">   
+    <script src="js/profile.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
+        
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h2 class="mx-5">Shuttle</h2></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> 
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-5">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" aria-current="page" href="about.html">About us</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" aria-current="page" href="index.html">Contact</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" aria-current="page" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropdown mx-5" style="margin-right: 400px !important;">
+                <button class="btn btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style='color:#297fb7'>
+                    <i class='bx bxs-user' style='color:#297fb7'></i>Profile
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="profile.html" style='color:#297fb7'> <i class='bx bxs-cog' style='color:#297fb7; margin-right: 5px;'></i> Settings</a></li>
+                    <li><a class="dropdown-item" href="profile.html" style='color:#297fb7'> <i class='bx bxs-bell' style='color:#297fb7; margin-right: 5px;'></i> Notifications</a></li>
+                    <li><a class="dropdown-item" href="#" style='color:#297fb7' id="exit"> <i class='bx bx-exit' style='color:#297fb7; margin-right: 5px;'></i> Exit</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container my-5 p-4" style="background-color: rgb(244, 244, 244) !important; width: 700px; border-radius: 10px;">
+        <h2>Personal Data</h2>
+        <div class="row">
+            <div class="col">
+
+                <form class="row g-3 needs-validation" novalidate id="form">
+                    <fieldset disabled>
+                        <div class="col-lg-12">
+                            <label for="disabledTextInput" class="form-label">Username</label>
+                            <input type="text" id="disabledTextInput" class="form-control">
+                        </div>
+                    </fieldset>
+                    
+
+                    <div class="col-md-6">
+                      <label for="validationCustom01" class="form-label">First name</label>
+                      <input type="text" class="form-control" id="validationCustom01" required placeholder="First Name:">
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid information
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="validationCustom02" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="validationCustom02" required placeholder="Last Name:">
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid information
+                      </div>
+                    </div>
+                    <fieldset disabled>
+                        <div class="col-md-6">
+                            <label for="validationCustom03" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="validationCustom03" required placeholder="example@mail.com">
+                            <div class="invalid-feedback">
+                              Please provide a valid information
+                            </div>
+                          </div>
+                    </fieldset>
+                    
+
+                    <div class="col-md-6">
+                        <label for="validationCustom04" class="form-label">Phone number</label>
+                        <input type="text" class="form-control" id="validationCustom04" required placeholder="+7 777 777 77 77">
+                        <div class="invalid-feedback">
+                          Please provide a valid information
+                        </div>
+                      </div>
+
+                    <div class="col-md-3">
+                      <label for="validationCustom05" class="form-label">Gender</label>
+                      <select class="form-select" required>
+                        <option selected disabled id="validationCustom05">Choose...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select a valid state.
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="validationCustom06" class="form-label">Date of birth</label>
+                      <input type="date" class="form-control" id="validationCustom06" required>
+                      <div class="invalid-feedback">
+                      </div>
+                    </div>
+
+                    <h2>Regional</h2>
+                    <h6 style="color: #727272;">They are needed to display suitable tickets and rules of entry into the country</h6>
+
+                    <div class="col-md-6">
+                        <label for="validationCustom07" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="validationCustom07" required placeholder="Choose country">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+  
+                    <div class="col-md-6">
+                        <label for="validationCustom08" class="form-label">City</label>
+                        <input type="text" class="form-control" id="validationCustom08" required placeholder="Choose city">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="validationCustom09" class="form-label">Citizenship</label>
+                        <input type="text" class="form-control" id="validationCustom09" required placeholder="Choose citizenship">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="validationCustom10" class="form-label">Passport</label>
+                        <input type="text" class="form-control" id="validationCustom10" required placeholder="Document number">
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions
+                          </label>
+                          <div class="invalid-feedback">
+                            You must agree before submitting.
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    
+    <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+    crossorigin="anonymous">
+    </script>
+</body>
+</html>
