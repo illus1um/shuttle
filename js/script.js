@@ -1,54 +1,74 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", function() {
-    const firstKey = localStorage.key(0);
-    const userDataJSON = localStorage.getItem(firstKey);
+    const thisUSer = localStorage.key(0);
+    const userDataJSON = localStorage.getItem(thisUSer);
     const userData = JSON.parse(userDataJSON);
     const usernameValue = userData.username; 
 
     if (userData) {
-        const welcomeMessage = document.getElementById("welcomeMessage");
-        welcomeMessage.textContent = "Hello " + usernameValue + "!";
+        if (userData.firstName !== undefined) {
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            welcomeMessage.textContent = "Hello " + userData.firstName + "!";
+        } else {
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            welcomeMessage.textContent = "Hello " + usernameValue + "!";
+        }
+        
     }
 });
 
-const fromDest = document.getElementById('from-dest');
-const toDest = document.getElementById('to-dest');
-const dateDeparture = document.getElementById('date-departure');
-const dateReturn = document.getElementById('date-return');
-const numberOfPassengers = document.getElementById('numberOfPassengers');
-const searchBtn = document.getElementById('search')
+document.getElementById('search').addEventListener('click', function () {
+    const fromDest = document.getElementById('from-dest').value;
+    const toDest = document.getElementById('to-dest').value;
+    const departureDate = document.getElementById('date-departure').value;
+    const returnDate = document.getElementById('date-return').value;
+    const numberOfPassengers = document.getElementById('numberOfPassengers').value;
 
-const destinations = [];
+    const errorAlert = document.getElementById('error-alert');
 
-searchBtn.onclick = function searchFlights() {
-    if (fromDest.value === '' || toDest.value === '' || dateDeparture.value === '' || numberOfPassengers.value < 1) {
-        alert('Please input valid information')
-    } else {
-        alert(`We are searching tickets for ${numberOfPassengers.value} people from ${fromDest.value} to ${toDest.value}. Date of your departure: ${dateDeparture.value} and your return: ${dateReturn.value};`)
+    errorAlert.style.display = 'none';
+
+    if (!fromDest || !toDest) {
+        displayErrorMessage("The place of departure and destination are mandatory.");
+        return;
     }
 
-    const destination = fromDest.value + ' - ' + toDest.value + 
-    '. Date: ' + dateDeparture.value + ' - ' + dateReturn.value;
-
-    if (destination.trim() !== "") {
-        destinations.push(destination);
-        toDest.value = "";
+    if (!departureDate) {
+        displayErrorMessage("Please select the departure date.");
+        return;
     }
 
-    displayDestinations();
-}
+    const today = new Date();
+    const departureDateObj = new Date(departureDate);
+    if (departureDateObj < today) {
+        displayErrorMessage("The departure after today.");
+        return;
+    }
 
-function displayDestinations() {
-    let destinationsContainer = document.getElementById("flight-destinations");
+    if (!returnDate) {
+        displayErrorMessage("Please select a return date.");
+        return;
+    }
 
-    destinationsContainer.innerHTML = "";   
+    const returnDateObj = new Date(returnDate);
+    if (returnDateObj <= departureDateObj) {
+        displayErrorMessage("The return date must be after the departure date.");
+        return;
+    }
 
-    destinations.forEach(function (destination) {
-        const destinationElement = document.createElement("h3");
-        destinationElement.textContent = destination;
-        destinationsContainer.appendChild(destinationElement);
-    });
+    if (!numberOfPassengers || numberOfPassengers < 1) {
+        displayErrorMessage("Specify the correct number of passengers.");
+        return;
+    }
+
+    window.location.href = 'confirmation.html';
+});
+
+function displayErrorMessage(message) {
+    const errorAlert = document.getElementById('error-alert');
+    errorAlert.textContent = message;
+    errorAlert.style.display = 'block';
 }
 
 const exit = document.getElementById('exit');
@@ -57,7 +77,5 @@ exit.addEventListener('click', e => {
     localStorage.removeItem(localStorage.key(0));
     window.location.href = 'login.html';
 });
-
-console.log(localStorage);
 
 console.log(localStorage);

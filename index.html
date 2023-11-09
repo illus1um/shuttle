@@ -28,9 +28,6 @@
                 <a class="nav-link active" aria-current="page" href="about.html">About us</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link active" aria-current="page" href="#">Contact</a>
-              </li>
-              <li class="nav-item mx-2">
                 <a class="nav-link active" aria-current="page" href="login.html">Login</a>
               </li>
               
@@ -43,7 +40,7 @@
             </button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="profile.html" style='color:#297fb7'> <i class='bx bxs-cog' style='color:#297fb7; margin-right: 5px;'></i> Settings</a></li>
-                <li><a class="dropdown-item" href="#" style='color:#297fb7'> <i class='bx bxs-bell' style='color:#297fb7; margin-right: 5px;'></i> Notifications</a></li>
+                <li><a class="dropdown-item" href="profile.html" style='color:#297fb7'> <i class='bx bxs-bell' style='color:#297fb7; margin-right: 5px;'></i> Notifications</a></li>
                 <li><a class="dropdown-item" href="#" style='color:#297fb7' id="exit"> <i class='bx bx-exit' style='color:#297fb7; margin-right: 5px;'></i> Exit</a></li>
               </ul>
           </div>
@@ -100,12 +97,17 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2 col-md-6 pe-5">
                 <div class="destination">
                     <button type="button" class="btn btn-primary" style="height: 50px;" id="search">Search Flights</button>
                 </div>
             </div>
 
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <div class="alert alert-danger" role="alert" id="error-alert" style="display: none;"></div>
+            </div>
         </div>
     </div>
 

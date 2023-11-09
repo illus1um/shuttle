@@ -30,9 +30,6 @@
                         <a class="nav-link active" aria-current="page" href="about.html">About us</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link active" aria-current="page" href="index.html">Contact</a>
-                    </li>
-                    <li class="nav-item mx-2">
                         <a class="nav-link active" aria-current="page" href="login.html">Login</a>
                     </li>
                 </ul>
@@ -67,7 +64,7 @@
 
                     <div class="col-md-6">
                       <label for="validationCustom01" class="form-label">First name</label>
-                      <input type="text" class="form-control" id="validationCustom01" required placeholder="First Name:">
+                      <input type="text" class="form-control" id="validationCustom01" required placeholder="First Name:" autocomplete="off">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -105,17 +102,17 @@
                         </div>
                       </div>
 
-                    <div class="col-md-3">
-                      <label for="validationCustom05" class="form-label">Gender</label>
-                      <select class="form-select" required>
-                        <option selected disabled id="validationCustom05">Choose...</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please select a valid state.
+                      <div class="col-md-3">
+                        <label for="validationCustom05" class="form-label">Gender</label>
+                        <select class="form-select" required id="genderSelect">
+                          <option selected disabled id="validationCustom05">Choose...</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please select a valid state.
+                        </div>
                       </div>
-                    </div>
                     
                     <div class="col-md-6">
                       <label for="validationCustom06" class="form-label">Date of birth</label>
@@ -158,18 +155,6 @@
                           Looks good!
                         </div>
                     </div>
-
-                    <div class="col-12">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                          <label class="form-check-label" for="invalidCheck">
-                            Agree to terms and conditions
-                          </label>
-                          <div class="invalid-feedback">
-                            You must agree before submitting.
-                          </div>
-                        </div>
-                      </div>
 
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Submit</button>
