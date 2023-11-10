@@ -61,9 +61,9 @@ const directions = [
         to: 'Toronto',
         tickets: [
             {
-                departure: '21.10.2023',
+                departure: '2023-11-11',
                 depHour: '20:00 - 22:00',
-                return: '28.10.2023',
+                return: '2023-11-12',
                 returnHour: '15:00 - 17:00',
                 price: 22,
             },

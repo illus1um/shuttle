@@ -22,7 +22,7 @@
             };
             
             const bool = (username.value === '' || email.value === '' || password.value === '' || password2.value === '' 
-            || !isValidEmail(email.value) || password.value.length < 8 || password2.value !== password.value);
+            || !isValidEmail(email.value) || password.value.length < 8 || password2.value !== password.value || !/[A-Z]/.test(password.value) || !/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password.value));
 
             if (!bool) {
                 localStorage.setItem(username.value, JSON.stringify(user));
@@ -79,6 +79,10 @@
             setError(password, 'Password is required');
         } else if (passwordValue.length < 8) {
             setError(password, 'Password must be at least 8 characters.');
+        } else if (!/[A-Z]/.test(passwordValue)) {
+            setError(password, 'Password must contain at least 1 capital letter.');
+        } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(passwordValue)) {
+            setError(password, 'Password must contain at least 1 special symbol.');
         } else {
             setSuccess(password);
         }

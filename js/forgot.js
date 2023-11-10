@@ -25,9 +25,6 @@
         });
     });
 
-    const password = document.getElementById('password');
-    const password2 = document.getElementById('password2');
-    
     const isValidEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       
@@ -51,27 +48,5 @@
         inputControl.classList.add('success');
         inputControl.classList.remove('error');
     }
-
-    const validateInputs = () => {
-        const passwordValue = password.value.trim();
-        const password2Value = password2.value.trim();
-    
-        if (passwordValue === '') {
-            setError(password, 'Password is required');
-        } else if (passwordValue.length < 8) {
-            setError(password, 'Password must be at least 8 characters.');
-        } else {
-            setSuccess(password);
-        }
-    
-        if (password2Value === '') {
-            setError(password2, 'Confirm your password');
-        } else if (password2Value !== passwordValue) {
-            setError(password2, "Passwords doesn't match");
-        } else {
-            setSuccess(password2);
-        }
-    }
-
 }
 
