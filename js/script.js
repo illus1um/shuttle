@@ -42,7 +42,7 @@ document.getElementById('search').addEventListener('click', function () {
     const today = new Date();
     const departureDateObj = new Date(departureDate);
     if (departureDateObj < today) {
-        displayErrorMessage("The departure after today.");
+        displayErrorMessage("The departure must be today or after today.");
         return;
     }
 
@@ -61,6 +61,16 @@ document.getElementById('search').addEventListener('click', function () {
         displayErrorMessage("Specify the correct number of passengers.");
         return;
     }
+
+    const searchData = {
+        fromDest: fromDest,
+        toDest: toDest,
+        departureDate: departureDate,
+        returnDate: returnDate,
+        numberOfPassengers: numberOfPassengers
+    };
+
+    localStorage.setItem('searchData', JSON.stringify(searchData));
 
     window.location.href = 'confirmation.html';
 });

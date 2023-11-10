@@ -19,7 +19,6 @@
 
 const thisUSer = localStorage.key(0);
 
-// Функция для заполнения полей профиля данными из localStorage
 const fillProfileFields = () => {
   const usernameField = document.getElementById("disabledTextInput");
   const firstNameField = document.getElementById("validationCustom01");
@@ -33,12 +32,10 @@ const fillProfileFields = () => {
   const citizenshipField = document.getElementById("validationCustom09");
   const passportField = document.getElementById("validationCustom10");
 
-  // Получаем данные из localStorage
   const userDataJSON = localStorage.getItem(thisUSer);
   if (userDataJSON) {
       const userData = JSON.parse(userDataJSON);
 
-      // Заполняем поля профиля данными из localStorage
       usernameField.value = userData.username || "";
       firstNameField.value = userData.firstName || "";
       lastNameField.value = userData.lastName || "";
@@ -53,9 +50,6 @@ const fillProfileFields = () => {
   }
 };
 
-
-
-// Функция для сохранения данных в localStorage
 const saveProfileData = () => {
   const username = document.getElementById("disabledTextInput").value;
   const firstName = document.getElementById("validationCustom01").value;
@@ -70,7 +64,6 @@ const saveProfileData = () => {
   const citizenship = document.getElementById("validationCustom09").value;
   const passport = document.getElementById("validationCustom10").value;
 
-  // Сохраняем данные в объект
   const userData = {
     username,
     firstName,
@@ -85,24 +78,17 @@ const saveProfileData = () => {
     passport,
   };
 
-  // Преобразуем объект в JSON и сохраняем в localStorage
   localStorage.setItem(username, JSON.stringify(userData));
 };
 
-// Вызываем функцию для заполнения полей профиля из localStorage
 fillProfileFields();
 
-// Добавляем обработчик события для сохранения данных в localStorage при отправке формы
 const form = document.getElementById("form");
 form.addEventListener("submit", function(event) {
   event.preventDefault();
 
-  // Проверяем, что форма прошла валидацию
   if (form.checkValidity()) {
-      // Если форма валидна, сохраняем данные в localStorage
       saveProfileData();
-
-      // Помечаем форму как "была отправлена"
       form.classList.add('was-validated');
   }
 });
