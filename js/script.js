@@ -88,4 +88,55 @@ exit.addEventListener('click', e => {
     window.location.href = 'login.html';
 });
 
+
+
+const cities = [
+    "New York",
+    "London",
+    "Paris",
+    "Tokyo",
+    "Astana",
+    "Almaty",
+];
+
+const fromDestInput = document.getElementById('from-dest');
+const toDestInput = document.getElementById('to-dest');
+const fromSuggestionsDiv = document.getElementById('from-suggestions');
+const toSuggestionsDiv = document.getElementById('to-suggestions');
+
+fromDestInput.addEventListener('input', function() {
+    const userInput = fromDestInput.value.trim().toLowerCase();
+    const matchingCities = cities.filter(city =>
+        city.toLowerCase().startsWith(userInput)
+    );
+
+    displaySuggestions(matchingCities, fromSuggestionsDiv, fromDestInput);
+});
+
+toDestInput.addEventListener('input', function() {
+    const userInput = toDestInput.value.trim().toLowerCase();
+    const matchingCities = cities.filter(city =>
+        city.toLowerCase().startsWith(userInput)
+    );
+
+    displaySuggestions(matchingCities, toSuggestionsDiv, toDestInput);
+});
+
+function displaySuggestions(suggestions, container, inputField) {
+    container.innerHTML = '';
+
+    suggestions.forEach(city => {
+        const suggestion = document.createElement('div');
+        suggestion.textContent = city;
+        suggestion.classList.add('suggestion');
+
+        suggestion.addEventListener('click', function() {
+            inputField.value = city;
+            container.innerHTML = '';
+        });
+
+        container.appendChild(suggestion);
+    });
+}
+
 console.log(localStorage);

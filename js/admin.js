@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const ticket = JSON.parse(localStorage.getItem(key));
 
             if (ticket && ticket.username && ticket.email) {
-
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${ticket.username}</td>
                     <td>${ticket.email}</td>
-                    <td><button class="btn btn-danger btn-sm" onclick="deleteTicket('${ticket.username}')">Delete</button></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editTicket('${ticket.username}')">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTicket('${ticket.username}')">Delete</button>
+                    </td>
                 `;
                 userTableBody.appendChild(row);
             }
@@ -25,6 +27,35 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteTicket = (username) => {
         if (confirm(`Are you sure you want to delete the user: ${username}?`)) {
             localStorage.removeItem(username);
+            renderTickets();
+        }
+    };
+
+    window.editTicket = (username) => {
+        const ticket = JSON.parse(localStorage.getItem(username));
+
+        if (!ticket) {
+            alert('User not found.');
+            return;
+        }
+
+        const newUsername = prompt('Enter new username:', ticket.username);
+        const newEmail = prompt('Enter new email:', ticket.email);
+
+        if (newUsername !== null && newEmail !== null) {
+            if (newUsername.trim() === '' || newEmail.trim() === '' || !isValidEmail(newEmail.trim())) {
+                alert('Invalid input. Please enter valid username and email.');
+                return;
+            }
+
+            const updatedUser = {
+                username: newUsername.trim(),
+                email: newEmail.trim(),
+            };
+
+            localStorage.removeItem(username);
+
+            localStorage.setItem(newUsername.trim(), JSON.stringify(updatedUser));
             renderTickets();
         }
     };
@@ -74,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
         newUsernameInput.value = '';
         newEmailInput.value = '';
-    
+
+        renderTickets();
     };
 });
 
