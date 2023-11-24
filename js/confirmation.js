@@ -10,21 +10,21 @@ const directions = [
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 47,
             },
             {
                 departure: '2023-11-25',
                 depHour: '22:00 - 00:00',
                 return: '2023-11-26',
                 returnHour: '10:00 - 12:00',
-                price: 12,
+                price: 56,
             },
             {
                 departure: '2023-11-25',
                 depHour: '20:45 - 22:45',
                 return: '2023-11-26',
                 returnHour: '18:00 - 20:00',
-                price: 213,
+                price: 93,
             },
             {
                 departure: '2023-11-25',
@@ -45,7 +45,7 @@ const directions = [
                 depHour: '10:00 - 12:00',
                 return: '2023-11-26',
                 returnHour: '11:00 - 13:00',
-                price: 712,
+                price: 79,
             }, 
             {
                 departure: '2023-11-25',
@@ -62,31 +62,31 @@ const directions = [
         tickets: [
             {
                 departure: '2023-11-25',
-                depHour: '20:00 - 22:00',
+                depHour: '10:00 - 23:00',
                 return: '2023-11-26',
-                returnHour: '15:00 - 17:00',
-                price: 22,
+                returnHour: '15:00 - 04:00',
+                price: 50,
+            },
+            {
+                departure: '2023-11-25',
+                depHour: '20:00 - 13:00',
+                return: '2023-11-26',
+                returnHour: '00:00 - 13:00',
+                price: 43,
+            },
+            {
+                departure: '2023-11-25',
+                depHour: '07:00 - 20:00',
+                return: '2023-11-26',
+                returnHour: '18:00 - 07:00',
+                price: 78,
             },
             {
                 departure: '2023-11-25',
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
-            },
-            {
-                departure: '2023-11-25',
-                depHour: '20:00 - 22:00',
-                return: '2023-11-26',
-                returnHour: '15:00 - 17:00',
-                price: 22,
-            },
-            {
-                departure: '2023-11-25',
-                depHour: '20:00 - 22:00',
-                return: '2023-11-26',
-                returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 70,
             },
     
             {
@@ -94,7 +94,7 @@ const directions = [
                 depHour: '10:00 - 12:00',
                 return: '2023-11-26',
                 returnHour: '11:00 - 13:00',
-                price: 712,
+                price: 73,
             },
             
             {
@@ -115,28 +115,28 @@ const directions = [
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 32,
             },
             {
                 departure: '2023-11-25',
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 15,
             },
             {
                 departure: '2023-11-25',
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 76,
             },
             {
                 departure: '2023-11-25',
                 depHour: '20:00 - 22:00',
                 return: '2023-11-26',
                 returnHour: '15:00 - 17:00',
-                price: 22,
+                price: 74,
             },
     
             {
@@ -144,7 +144,7 @@ const directions = [
                 depHour: '10:00 - 12:00',
                 return: '2023-11-26',
                 returnHour: '11:00 - 13:00',
-                price: 712,
+                price: 71,
             },
             
             {
@@ -152,7 +152,7 @@ const directions = [
                 depHour: '10:00 - 12:00',
                 return: '2023-11-26',
                 returnHour: '00:00 - 02:00',
-                price: 72,
+                price: 55,
             },
         ],
     }
@@ -176,7 +176,7 @@ const generateTicket = (ticket, i) => {
                 
                 <div class="col-lg-4 pe-5 mt-4">
                     <h3>${ticket.price}$</h3>
-                    <button type="button" class="btn btn-primary" onclick="ticketPick(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal">Buy ticket</button>
+                    <button type="button" class="btn btn-primary" onclick="ticketPick(${i}, ${ticket.price})" data-bs-toggle="modal" data-bs-target="#exampleModal">Buy ticket</button>
                 </div>
 
                 <div class="col-lg-6 p-1">
@@ -224,9 +224,11 @@ let bool = false;
 for (let i = 0; i < directions.length; i++) {
     for (let j = 0; j < directions[i].tickets.length; j++) {
         if (from === directions[i].from && to === directions[i].to && 
-            departureDate === directions[i].tickets[j].departure && returnDate === directions[i].tickets[j].return) {
-                generateTicket(directions[i].tickets[j], j);        
-                bool = true;
+            departureDate === directions[i].tickets[j].departure && 
+            returnDate === directions[i].tickets[j].return) 
+            {
+            generateTicket(directions[i].tickets[j], j);        
+            bool = true;
         } 
     }
 }
@@ -236,7 +238,7 @@ if (!bool) {
 }
 
 
-function ticketPick(index) {
+function ticketPick(index, ticketPrice) {
     const departureHourElement = document.getElementById(`currentDepartureHour${index}`);
     const departureHourText = departureHourElement.textContent;
     const depHours = departureHourText.split(' - ');
@@ -253,7 +255,6 @@ function ticketPick(index) {
     }
 
     localStorage.setItem('ticketHours', JSON.stringify(ticketDetails));
-
     const ticketInfoHTML = `
         <div class="container px-4 py-2">
             <div class="row mb-4">
@@ -279,6 +280,10 @@ function ticketPick(index) {
                         <i class='bx bxs-plane-land' style='color:#297fb7'></i> ${returnHours[1]} &nbsp; ${from} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${returnDate}
                     </h6>
                 </div>
+            </div>
+
+            <div class="row mt-4">
+                <h4>Ticket Price: ${ticketPrice}$</h4>
             </div>
         </div>
     `;
@@ -333,5 +338,17 @@ function sortTicketsByPrice() {
 }
 
 function buyTicket() {
-    window.location.href = 'ticketReceipt.html';
+    const thisUSer = localStorage.key(0);
+    const userDataJSON = localStorage.getItem(thisUSer);
+    const userData = JSON.parse(userDataJSON);
+    if (userData.username === undefined || userData.firstName === undefined || userData.lastName === undefined 
+        || userData.email === undefined || userData.phoneNumber === undefined || userData.gender === undefined
+        || userData.dateOfBirth === undefined || userData.country === undefined || userData.city === undefined 
+        || userData.citizenship === undefined || userData.passport === undefined) {
+        alert('Fill your profile!');    
+    } else {
+        window.location.href = 'ticketReceipt.html';
+    }
 }
+
+console.log(localStorage);
